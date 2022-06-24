@@ -1,0 +1,55 @@
+// procedure pour calculer le Produit scalaire
+
+PROCEDURE dot_product (v1,v2:ARRAY_OF INTEGER[2];VAR ps:INTEGER)
+VAR
+    
+BEGIN
+   ps:=v1[0]*v2[0]+v1[1]*v2[1];
+END
+
+FUNCTION produit_scalaire(v1,v2:ARRAY_OF INTEGER[2];) : INTEGER
+VAR
+    ps:INTEGER:=0;
+BEGIN
+     ps:=v1[0]*v2[0]+v1[1]*v2[1];
+    RETURN ps ;
+END
+
+//procedure pour verifier si les deux vecteurs sont orthogonaux ou pas
+
+FUNCTION orthogonal(v1,v2:ARRAY_OF INTEGER[2];) : STRING
+VAR
+    s:INTEGER=0;
+BEGIN
+//appel au procedure dot_product
+dot_product(v1,v2,s)
+    IF (s=0) THEN
+        RETURN "les deux vecteur sont orthogonal";
+    ELSE
+    RETURN "les deux vecteur ne sont pas orthogonal" ;
+    END_IF
+END
+
+//lecture les coordonnes de vecteur
+
+PROCEDURE read_vector(VAR v:ARRAY_OF INTEGER[2];)
+VAR
+    i:INTEGER;
+BEGIN
+    FOR i FROM 0 TO v.length-1 STEP 1  DO
+        read(v[i])
+    END_FOR
+END
+
+
+//algorithme prancipal
+
+ALGORITHM Dot product
+VAR
+  v1,v2:ARRAY_OF INTEGER[2];  
+BEGIN
+  read_vector(v1);
+  read_vector(v2);
+  ch:=orthogonal(v1,v2);
+  Write(ch) ; 
+END
